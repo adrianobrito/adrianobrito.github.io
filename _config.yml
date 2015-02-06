@@ -1,8 +1,8 @@
 # Site settings
-title: Freelancer
-email: your-email@domain.com
-url: https://example.github.io
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+title: Adriano Brito
+email: adrianosdebrito@gmail.com
+url: https://adrianobrito.github.io
+description: "Site do Desenvolvedor de Software, Adriano Brito"
 
 # Color settings (hex-codes without the leading hash-tag)
 color:
@@ -12,7 +12,7 @@ color:
 
 # Footer settings
 footer:
-  copyright: Dr. Henry Jekyll
+  copyright: Adruabi Brito
   location: Location
   social: Around the Web
   credits: Credits
