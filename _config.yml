@@ -8,7 +8,7 @@ description: "Write an awesome description for your new site here. You can edit 
 color:
   primary: 639465 #80B3FF
   secondary: 215F5A #FD6E8A
-  secondary-dark: B7B872 #A2122F
+  secondary-dark: A2122F
 
 # Footer settings
 footer:
