@@ -1,37 +1,23 @@
-# Site settings
-title: Adriano Brito
-email: adrianosdebrito@gmail.com
-url: https://adrianobrito.github.io
-description: "Site do Desenvolvedor de Software, Adriano Brito"
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+#relative_permalinks: true
+gems:                [jekyll-paginate]
 
-# Color settings (hex-codes without the leading hash-tag)
-color:
-  primary: 1B3F47 
-  secondary: E95C42
-  secondary-dark: 0D1D1A
+# Setup
+title:               Lanyon
+tagline:             'A Jekyll theme'
+description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+url:                 http://lanyon.getpoole.com
+baseurl:             ''
+paginate:            5
 
-# Footer settings
-footer:
-  copyright: Adriano Brito
-  location: Home Office
-  social: Contatos
-  credits: Credits
+# About/contact
+author:
+  name:              Mark Otto
+  url:               https://twitter.com/mdo
+  email:             markdotto@gmail.com
 
-# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
-social:
-  - title: GMail
-    url: mailto
-  - title: github
-    url: http://github.com/adrianobrito
-
-# Postal address (add as many lines as necessary)
-address:
-  - line: Rua Costa Sousa, 71, Benfica
-  - line: Fortaleza, Ceará, Brasil
-
-# Credits content
-credits: 'Freelancer is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.'
-
-# Build settings
-markdown: kramdown
-permalink: pretty
+# Custom vars
+version:             1.0.0
