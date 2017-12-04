@@ -14,7 +14,16 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Varela Round', Helvetica, Arial, sans-serif !important;
 }
 
+.sidebar-toggle:active, #sidebar-checkbox:focus ~ .sidebar-toggle, #sidebar-checkbox:checked ~ .sidebar-toggle {
+  background-color: #17A398;
+}
+
+.container a {
+  color: #17A398 !important;
+}
+
 .sidebar {
+  background-color: #17A398 !important;
   font-family: 'Varela Round', Helvetica, Arial, sans-serif;
 }
 
