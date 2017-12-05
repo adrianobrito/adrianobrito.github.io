@@ -1,13 +1,15 @@
 ---
 layout: post
 title: Thinking(deeply) about Immutability
+categories: functional programming
 ---
 Immutability is something that a lot of people care about today, but why? What happen in the world of programming languages designs to introduce immutability as a necessary feature? The answer to this and to other questions is what will be the subject of my very first post in this blog. So, before we talk about it let's come back to the 90's.
 
-
-# The mutable Hardware
+## The mutable Hardware
 
 [Jekyll](http://jekyllrb.com) is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From [the project's readme](https://github.com/mojombo/jekyll/blob/master/README.markdown):
+
+<!--more-->
 
   > Jekyll is a simple, blog aware, static site generator. It takes a template directory [...] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.
 

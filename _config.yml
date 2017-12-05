@@ -1,8 +1,5 @@
 # Permalinks
-#
-# Use of `relative_permalinks` ensures post links from the index work properly.
 permalink:           pretty
-#relative_permalinks: true
 gems:                [jekyll-paginate]
 
 # Setup
@@ -12,6 +9,7 @@ description:         'Thoughts about my professional carrer and stuff'
 url:                 http://lanyon.getpoole.com
 baseurl:             ''
 paginate:            5
+excerpt_separator:  <!--more-->
 
 # About/contact
 author:
