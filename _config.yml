@@ -5,8 +5,8 @@ gems:                [jekyll-paginate]
 # Setup
 title:               Adriano Brito
 tagline:             'a thinking developer'
-description:         'Thoughts about my professional carrer and stuff'
-url:                 http://lanyon.getpoole.com
+description:         'Thoughts about code and machines'
+url:                 http://adrianobrito.github.io
 baseurl:             ''
 paginate:            5
 excerpt_separator:  <!--more-->
