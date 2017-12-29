@@ -17,7 +17,7 @@ Think a solution design having immutability as a constraint, lead to a situation
 
 ## Thinking in transformations
 
-Nowadays, with the popularity of functional programming, many software developers begin about software as sequence of transformations. Thinking in that particular way is only possible with a design that considers immutability, that leads to a software without side-effects. Thanks to immutability you can enjoy the possibility of break your code in many different pure functions and execute it in many possible environments.
+Nowadays, with the popularity of functional programming, many software developers visualize software as sequence of transformations. Thinking in that particular way is possible only with a design that considers immutability, that leads to a software without side-effects. Thanks to immutability you can enjoy the possibility of break your code in many different pure functions and execute it in many possible environments.
 
 ![](https://camo.githubusercontent.com/c2c0ba1ad82d003b5386404ae09c00763d73510c/687474703a2f2f692e696d6775722e636f6d2f72764352394f512e706e67)
 *Time travel debug, one great wonder that is possible because of immutability*
