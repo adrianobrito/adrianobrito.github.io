@@ -49,7 +49,7 @@ In the (most) simple code from above we can check the following points:
 
 (1) This particular line of code is not the most beautiful thing that you see in the world, but if we use a more serious functional programming language than JavaScript, it would be possible for use do things like:
 
-```
+```haskell
 number
 |> calculateQuarter
 |> checkValue
