@@ -7,6 +7,14 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-111736139-1');
+
+        // All links must open in another tab
+        document.addEventListener("DOMContentLoaded", function(event) {
+            document
+                .querySelectorAll(".post a")
+                .forEach(link => link.target = "_blank");
+        });
+
     </script>
 
   <link href="http://gmpg.org/xfn/11" rel="profile">
