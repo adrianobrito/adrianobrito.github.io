@@ -52,7 +52,7 @@ The example above is nice and easy to understand but it has a specific problem t
 
 ## Servlet API Thread Pool
 
-As you should know, the typical Servlet container implementations (Tomcat, Jetty, Undertow) handle each HTTP request as a thread, that is obtained from a thread pool in container. These thread pools are necessary in order to control the amount of threads that are being executed simultaneously. In a regular basis each thread consumes ~1MB of memory just to allocate a single thread stack, so 1000 simultaneous requests could use ~1GB of memory only for the thread stacks. So, thread pool comes as a solution to limit amount of threads being executed, fitting the application to a scenario where it don't throws an `OutOfMemoryError`.
+As you should know, the typical Servlet container implementations (Tomcat, Jetty, Undertow) handle each HTTP request as a thread, that is obtained from a thread pool in container. These thread pools are necessary to control the amount of threads that are being executed simultaneously. In a regular basis each thread consumes ~1MB of memory just to allocate a single thread stack, so 1000 simultaneous requests could use ~1GB of memory only for the thread stacks. So, thread pool comes as a solution to limit amount of threads being executed, fitting the application to a scenario where it don't throws an `OutOfMemoryError`.
 
 ![Thread Pool]({{ site.baseurl }}/public/images/request_flow_thread.png)
 <small>_Thread per request model_</small>
@@ -184,5 +184,5 @@ public class GeoReferenceController {
 
 Here are some good links that addresses some more details about asynchronous requests and callable responses in Spring MVC.
 
-* [The importance of tuning your thread pools; Andrew Brampton](https://blog.bramp.net/post/2015/12/17/the-importance-of-tuning-your-thread-pools/) - This blog post is a very complete guide about thread pool tuning, and the author talk about very good details of how servlet thread pool works behind the scenes.
+* [The importance of tuning your thread pools; Andrew Brampton](https://blog.bramp.net/post/2015/12/17/the-importance-of-tuning-your-thread-pools/) - This blog post is a very complete guide about thread pool tuning, and the author talk about very good details of how servlet thread pool works behind the scenes in servlet container.
 *  [Making a Controller Method Asynchronous; Rossen Stoyanchev](https://spring.io/blog/2012/05/10/spring-mvc-3-2-preview-making-a-controller-method-asynchronous/) : A brief discussion about the Spring MVC components that can be used to help implementation of asynchronous controller methods.
