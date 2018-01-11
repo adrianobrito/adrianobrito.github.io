@@ -19,7 +19,7 @@ public class HelloWorldController {
 }
 ```
 
-Sometimes it is necessary to execute intensive I/O operations or do network tasks, such as handling file uploads or processing a huge volume of data coming from clients. In this particular situation, there's a simple way of do that, like is showed in example controller implementation below:
+Sometimes it is necessary to execute intensive I/O operations or do network tasks, such as handling file uploads or processing a huge volume of data coming from clients. In this particular situation, there's a simple way of doing that, like is showed in example controller implementation below:
 
 ```java
 @Controller
@@ -52,12 +52,12 @@ The example above is nice and easy to understand but it has a specific problem t
 
 ## Servlet API Thread Pool
 
-As you should know, typical servlet container implementations (Tomcat, Jetty, Undertow) handle each HTTP request as a thread, that is obtained from a thread pool in container. These thread pools are necessary to control the amount of threads that are being executed simultaneously. In a regular basis, each thread consumes ~1MB of memory just to allocate a single thread stack, so 1000 simultaneous requests could use ~1GB of memory only for the thread stacks. Therefore, thread pool comes as a solution to limit amount of threads being executed, fitting the application to a scenario where it doesn't throw an `OutOfMemoryError`.
+As you should know, typical servlet container implementations (Tomcat, Jetty, Undertow) handle each HTTP request as a thread, that is obtained from a thread pool in container. These thread pools are necessary to control the amount of threads that are being executed simultaneously. In a regular basis, each thread consumes ~1MB of memory just to allocate a single thread stack, so 1000 simultaneous requests could use ~1GB of memory only for the thread stacks. Therefore, thread pool comes as a solution to limit the amount of threads being executed, fitting the application to a scenario where it doesn't throw an `OutOfMemoryError`.
 
 ![Thread Pool]({{ site.baseurl }}/public/images/request_flow_thread.png)
 <small>_Thread per request model_</small>
 
-_Thread per request model_ assumes that threads obtained from pool will execute little tasks, and then those threads could be released and become available in the pool to process subsequent requests. When a request is dispatched against an endpoint that does a intensive job, the request's thread will be blocked waiting for the end of that job. In the case of many concurrent requests of this nature, the server can reach a scenario that the thread pool has any available threads and the incoming requests will have to wait for it ([starvation](https://docs.oracle.com/javase/tutorial/essential/concurrency/starvelive.html)).
+_Thread per request model_ assumes that threads obtained from pool will execute small tasks, and then those threads could be released and become available in the pool to process subsequent requests. When a request is dispatched against an endpoint that does a intensive job, the request's thread will be blocked waiting for the end of that job. In the case of many concurrent requests of this nature, the server can reach a scenario that the thread pool has any available threads and the incoming requests will have to wait for it ([starvation](https://docs.oracle.com/javase/tutorial/essential/concurrency/starvelive.html)).
 
 ![Thread Pool](https://res.infoq.com/articles/Java-Thread-Pool-Performance-Tuning/en/resources/queue-cartoon.jpg)
 <small>_A busy thread pool analogy_</small>
@@ -90,7 +90,7 @@ public class SimpleAsyncServlet extends HttpServlet {
 }
 ```
 
-Asynchronous requests run in a different thread than the usual HTTP threads, giving the possibility of executing heavy jobs without locking or idling servlet thread pool's threads. In order to avoid some thread runs infinitely in `AsyncContext`, it was specified a thread execution timeout after getting a `AsyncContext` instance.
+Asynchronous requests run in a different thread than the usual HTTP threads, giving the possibility of executing heavy jobs without locking or idling servlet thread pool's threads. In order to avoid a situation that some thread runs infinitely in `AsyncContext`, it was specified a thread execution timeout after getting a `AsyncContext` instance.
 
 Thus, this can be a solution for the `GeoReferenceController` problem that was mentioned before, but how is it done in a Spring MVC application?
 
@@ -184,7 +184,7 @@ public class GeoReferenceController {
 
 ## Good Reads
 
-Here are some good links for you to read and think about more details in servlet asynchronous requests and callable responses in Spring MVC.
+Here are some good links for you to read and think more about details in servlet asynchronous requests and callable responses in Spring MVC.
 
 * [The importance of tuning your thread pools; Andrew Brampton](https://blog.bramp.net/post/2015/12/17/the-importance-of-tuning-your-thread-pools/) - This blog post is a very complete guide about thread pool tuning, and the author talk about very good details of how servlet thread pool works behind the scenes in servlet container.
 *  [Making a Controller Method Asynchronous; Rossen Stoyanchev](https://spring.io/blog/2012/05/10/spring-mvc-3-2-preview-making-a-controller-method-asynchronous/) : A brief discussion about the Spring MVC components that can be used to help implementation of asynchronous controller methods.
