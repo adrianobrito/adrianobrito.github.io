@@ -4,7 +4,7 @@ title: Using callable responses in Spring MVC
 ---
 Spring MVC is definitively the [leading Java Web framework nowadays]({{ site.baseurl }}/public/images/top_web_framework.png), offering a strong abstraction for Servlet API, making easier to develop Java Web applications. It's used as one of base components of Spring Cloud, a suite of many different Spring frameworks necessary to build a microservice platform.
 
-One of the advantages of use Spring MVC, is the fact that you have a simple idiomatic abstraction to develop applications over HTTP protocol. Different from Servlet API, you don't need to worry about low level details like `HttpServletRequest` or `HttpServletResponse`, you just care about the application's logic, like it's showed in the example below with a basic example:
+One of the advantages of use Spring MVC, is the fact that you have a simple idiomatic abstraction to develop applications over HTTP protocol. Different from Servlet API, you don't need to worry about low level details like `HttpServletRequest` or `HttpServletResponse`, you just care about the application's logic, like it's showed in the example below with a basic code:
 
 ```java
 @Controller
@@ -48,16 +48,16 @@ public class GeoReferenceController {
 }
 ```
 
-The example above is nice and easy to understand but it has a specific problem that developers usually don't care about: **blocking threads due to intensive request operations**. Yeah, that's a problem that have a direct impact into a Java application scalability, but to understand this specific problem it's necessary to dive in first into the:
+The example above is nice and easy to understand but it has a specific problem that developers usually don't care about: **blocking servlet threads due to long term requets**. Yeah, that's a problem that has a direct impact in a Java web application scalability, but to understand that specific problem it's necessary to dive in first into the:
 
 ## Servlet API Thread Pool
 
-As you should know, the typical Servlet container implementations (Tomcat, Jetty, Undertow) handle each HTTP request as a thread, that is obtained from a thread pool in container. These thread pools are necessary to control the amount of threads that are being executed simultaneously. In a regular basis each thread consumes ~1MB of memory just to allocate a single thread stack, so 1000 simultaneous requests could use ~1GB of memory only for the thread stacks. So, thread pool comes as a solution to limit amount of threads being executed, fitting the application to a scenario where it don't throws an `OutOfMemoryError`.
+As you should know, the typical Servlet container implementations (Tomcat, Jetty, Undertow) handle each HTTP request as a thread, that is obtained from a thread pool in container. These thread pools are necessary to control the amount of threads that are being executed simultaneously. In a regular basis each thread consumes ~1MB of memory just to allocate a single thread stack, so 1000 simultaneous requests could use ~1GB of memory only for the thread stacks. So, thread pool comes as a solution to limit amount of threads being executed, fitting the application to a scenario where it doesn't throws an `OutOfMemoryError`.
 
 ![Thread Pool]({{ site.baseurl }}/public/images/request_flow_thread.png)
 <small>_Thread per request model_</small>
 
-These _thread per request model_ assumes that threads obtained from pool will execute little tasks, so the thread could be released and available in the pool to do more work. So, in the case where a request is dispatched against an endpoint that does a intensive job, the request's thread will be blocked waiting for the end of that job. In the case of many concurrent requests of this nature, the server can reach a scenario where thread pool has any available threads and the incoming requests will have to wait for it (aka [starvation](https://docs.oracle.com/javase/tutorial/essential/concurrency/starvelive.html)).
+_Thread per request model_ assumes that threads obtained from pool will execute little tasks, and then those threads could be released and available in the pool to process another requests. When a request is dispatched against an endpoint that does a intensive job, the request's thread will be blocked waiting for the end of that job. In the case of many concurrent requests of this nature, the server can reach a scenario that the thread pool has any available threads and the incoming requests will have to wait for it ( [starvation](https://docs.oracle.com/javase/tutorial/essential/concurrency/starvelive.html)).
 
 ![Thread Pool](https://res.infoq.com/articles/Java-Thread-Pool-Performance-Tuning/en/resources/queue-cartoon.jpg)
 <small>_A busy thread pool analogy_</small>
@@ -90,13 +90,15 @@ public class SimpleAsyncServlet extends HttpServlet {
 }
 ```
 
-Asynchronous requests gives the possibility of execute a hard job in a different thread from the thread that came from servlet thread pool, and ends up releasing that HTTP thread back to its pool. In order to avoid that the thread in `AsyncContext` runs infinitely, we specified a timeout after get a `AsyncContext` instance.
+Asynchronous requests gives the possibility of execute a hard job in a different thread from the thread that came from servlet thread pool, and ends up releasing that HTTP thread back to its pool. In order to avoid some thread runs infinitely in `AsyncContext`, we specified a thread execution timeout after get a `AsyncContext` instance.
 
-So, it's a solution for the `GeoReferenceController` problem that we mentioned before, but how it can be done in a Spring MVC application?
+So, this can be a solution for the `GeoReferenceController` problem that we mentioned before, but how it can be done in a Spring MVC application?
 
 ## Callable responses
 
-Spring MVC have a idiomatic way to handle situations where it is necessary to use asynchronous requests. It is based in `Callable` interface from `java.util.concurrent` package, that is kinda like `Runnable` except that it returns something at the end of its execution. In order to show how it works, I created a little [project in github](https://github.com/adrianobrito/callable-controller) with some callable response examples. In this project, there's a [class](https://github.com/adrianobrito/callable-controller/blob/master/src/main/java/com/example/callablecontroller/CallableController.java) with examples that I will use to show some examples, starting from the most basic.
+Spring MVC has a idiomatic way to handle situations where it is necessary to use asynchronous requests. It is based in `Callable` interface from `java.util.concurrent` package, that is kinda like `Runnable` except that it returns something at the end of its execution.
+
+I created a little [project in github](https://github.com/adrianobrito/callable-controller) with some callable response examples. In this project, there's a [class](https://github.com/adrianobrito/callable-controller/blob/master/src/main/java/com/example/callablecontroller/CallableController.java) with practical methods that I will use to show some callable response examples, starting from the most basic.
 
 ```java
 @Controller
@@ -127,7 +129,7 @@ In the `SimpleAsyncServlet` class, it was specified a timeout value into `AsyncC
 @RequestMapping("/async/callable")
 public class CallableController {
 
-    private final Integer TIMEOUT = 1000;
+    private final Integer TIMEOUT = 3000;
 
     @GetMapping("/custom-timeout-handling")
     public @ResponseBody WebAsyncTask<String> callableTimeout() {
@@ -144,7 +146,7 @@ public class CallableController {
 }
 ```
 
-Now it's possible to rewrite `GeoReferenceController` in a way that it don't block threads from servlet thread pool when it perform a heavy task, like we can see in the the code snippet below.
+Now there are all the necessary features to rewrite `GeoReferenceController` in a way that it doesn't block threads from servlet thread pool when it performs a heavy task, like it is exposed in the the code snippet below.
 
 
 ```java
@@ -182,7 +184,7 @@ public class GeoReferenceController {
 
 ## Good Reads
 
-Here are some good links that addresses some more details about asynchronous requests and callable responses in Spring MVC.
+Here are some good links for you read and think about more details in servlet asynchronous requests and callable responses in Spring MVC.
 
 * [The importance of tuning your thread pools; Andrew Brampton](https://blog.bramp.net/post/2015/12/17/the-importance-of-tuning-your-thread-pools/) - This blog post is a very complete guide about thread pool tuning, and the author talk about very good details of how servlet thread pool works behind the scenes in servlet container.
 *  [Making a Controller Method Asynchronous; Rossen Stoyanchev](https://spring.io/blog/2012/05/10/spring-mvc-3-2-preview-making-a-controller-method-asynchronous/) : A brief discussion about the Spring MVC components that can be used to help implementation of asynchronous controller methods.
