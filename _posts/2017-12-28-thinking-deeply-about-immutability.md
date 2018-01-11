@@ -16,10 +16,10 @@ When you think about a solution design having immutability as a constraint, it e
 
 ## Thinking in transformations
 
-Nowadays, with the popularity of functional programming, many software developers visualize software as sequence of transformations. Thinking in that particular way is possible only with a design that considers immutability, that leads to a software without side-effects. Thanks to immutability you can enjoy the possibility of break your code in many different pure functions and execute it in many possible environments.
+Nowadays, with the popularity of functional programming, many software developers visualize software as sequence of transformations. Thinking in that particular way is possible only with a design that considers immutability, that leads to a code without side-effects. Thanks to immutability you can enjoy the possibility of break your code in many different pure functions and execute it in many possible environments.
 
 ![](https://camo.githubusercontent.com/c2c0ba1ad82d003b5386404ae09c00763d73510c/687474703a2f2f692e696d6775722e636f6d2f72764352394f512e706e67)
-*Time travel debug, a great wonder that is possible due to immutability*
+<small>*Time travel debug, a great wonder that is possible due to immutability*</small>
 
 But how it exactly happens? How immutability will improve my code quality? These questions are not so easy to answer because immutability is not a thing only related with code design, but it's related with other things like hardware and distributed systems. So, in order to help you visualize in a practical way, it will be showed a basic example involving calculations.
 
