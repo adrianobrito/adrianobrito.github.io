@@ -7,11 +7,10 @@ Spring MVC is definitively the [leading Java Web framework nowadays]({{ site.bas
 One of the advantages of use Spring MVC, is the fact that you have a simple idiomatic abstraction to develop applications over HTTP protocol. Different from Servlet API, you don't need to worry about low level details like `HttpServletRequest` or `HttpServletResponse`, you just care about the application's logic, like it's showed in the example below with a basic code:
 
 ```java
-@Controller
+@RestController
 public class HelloWorldController {
 
 	@GetMapping("/helloWorld")
-	@ResponseBody
 	public String helloWorld() {
 		return "Hello, World";
 	}
@@ -22,7 +21,7 @@ public class HelloWorldController {
 Sometimes it is necessary to execute intensive I/O operations or do network tasks, such as handling file uploads or processing a huge volume of data coming from clients. In this particular situation, there's a simple way of doing that, like is showed in example controller implementation below:
 
 ```java
-@Controller
+@RestController
 @RequestMapping("/georeference")
 public class GeoReferenceController {
 
@@ -101,14 +100,14 @@ Spring MVC has a idiomatic way to handle situations where it is necessary to use
 I created a little [project in github](https://github.com/adrianobrito/callable-controller) with some callable response implementations. In this project, there's a [class](https://github.com/adrianobrito/callable-controller/blob/master/src/main/java/com/example/callablecontroller/CallableController.java) with practical methods that I will use to show some callable response examples, starting from the most basic:
 
 ```java
-@Controller
+@RestController
 @RequestMapping("/async/callable")
 public class CallableController {
 
     //..
 
     @GetMapping("/response-body")
-    public @ResponseBody Callable<String> callable() {
+    public Callable<String> callable() {
         return () -> {
             Thread.sleep(2000);
             return "Callable result";
@@ -125,14 +124,14 @@ Spring MVC handles controller methods that return `Callable` as asynchronous req
 In the `SimpleAsyncServlet` class, a timeout value was specified in `AsyncContext`. So, how can it be done in Spring MVC? Just by using `WebAsyncTask` as return type of a controller method, like is showed in the example below:
 
 ```java
-@Controller
+@RestController
 @RequestMapping("/async/callable")
 public class CallableController {
 
     private final Integer TIMEOUT = 3000;
 
     @GetMapping("/custom-timeout-handling")
-    public @ResponseBody WebAsyncTask<String> callableTimeout() {
+    public WebAsyncTask<String> callableTimeout() {
         Callable<String> callable = () -> {
             Thread.sleep(2000);
             return "Callable result";
@@ -150,7 +149,7 @@ Now, we have all the necessary components to refactor `GeoReferenceController` i
 
 
 ```java
-@Controller
+@RestController
 @RequestMapping("/georeference")
 public class GeoReferenceController {
 
