@@ -103,7 +103,7 @@ object Stack {
 ```
 
 <hr/>
-### Scalisms part 4f
+### Scalisms part 4
 
 * `A*` means for variable arguments.
 * `apply(args:A*)` function can be be executed without being properly called. In that case, `Stack.apply(arguments*)` and `Stack(arguments*)` means the same thing.
