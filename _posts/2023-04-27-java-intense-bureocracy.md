@@ -12,6 +12,7 @@ Java is undoubtedly one of the most popular programming languages used today. Wh
 Comparing Java platform to other popular programming languages and frameworks, such as Python and Node.js, highlights some of the key differences in the level of bureaucracy involved. Python, for example, has a much simpler syntax than Java, making it easier for developers to get started and write code quickly. The Python ecosystem also has fewer dependencies, making it easier to manage and update libraries and packages. Node.js, on the other hand, is known for its fast and effiecient builds, which is far from being a reality in JVM based applications.
 
 ![image](https://user-images.githubusercontent.com/697706/234901316-73fe5d18-da5f-4507-9364-4c0dfa3930e8.png)
+
 _Java is a suicidal platform_
 
 When it comes to compare Spring(easily the most popular Java framework) to other popular frameworks, such as Ruby on Rails and Django, also highlights some of the key differences in the level of bureaucracy involved. Ruby on Rails, for example, is known for its "convention over configuration" approach, which reduces the amount of boilerplate code needed to get started. Similarly, Django is known for its simplicity and ease of use, with a focus on building web applications quickly and efficiently.
