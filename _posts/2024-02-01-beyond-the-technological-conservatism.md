@@ -1,4 +1,8 @@
-# Beyond the technological conservatism in Nowadays Software Engineering
+---
+layout: post
+title: Beyond the technological conservatism in Nowadays Software Engineering
+---
+
 
 ## Understanding the Conservative Perspective: A Deeper Dive
 
