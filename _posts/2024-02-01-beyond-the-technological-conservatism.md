@@ -3,7 +3,6 @@ layout: post
 title: Beyond the technological conservatism in Nowadays Software Engineering
 ---
 
-
 ## Understanding the Conservative Perspective: A Deeper Dive
 
 The conservative perspective in software engineering, often perceived as a reluctance to embrace new technologies, is more than just a preference for the old over the new. It is a mindset steeped in prudence, caution, and a deep-rooted understanding of the risks associated with unproven technologies. To appreciate this viewpoint fully, one must delve into the reasons behind this cautious approach and recognize its value in a field as dynamic and risk-prone as software engineering.
