@@ -4,6 +4,8 @@
 
 The conservative perspective in software engineering, often perceived as a reluctance to embrace new technologies, is more than just a preference for the old over the new. It is a mindset steeped in prudence, caution, and a deep-rooted understanding of the risks associated with unproven technologies. To appreciate this viewpoint fully, one must delve into the reasons behind this cautious approach and recognize its value in a field as dynamic and risk-prone as software engineering.
 
+![Conservatism]({{ site.baseurl }}/public/images/conservatism.png)
+
 The conservative outlook has been shaped significantly by historical lessons. The tech industry has seen numerous instances where technologies, initially touted as revolutionary, failed to deliver on their promises or introduced unforeseen complexities. Examples abound, from the dot-com bubble's overreliance on speculative technologies to the more recent disillusionment with certain aspects of blockchain technology. These lessons have instilled a sense of caution in experienced software engineers, emphasizing the importance of thorough vetting before adopting new tools or methodologies.
 
 This historical context is crucial in understanding why many seasoned professionals prefer tried-and-tested technologies over emerging ones. Articles like [“Hype Driven Development”](https://blog.daftcode.pl/hype-driven-development-3469fc2e9b22) not only caution against the perils of blindly following trends but also highlight the importance of stability, reliability, and maintainability — qualities often found in more established technologies.
